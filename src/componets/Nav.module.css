@@ -1,0 +1,37 @@
+.nav {
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  
+  width: 11rem;
+  height: 11.55rem;
+  padding: .8rem;
+
+  position: absolute;
+  right: 0;
+  top: 3.5rem;
+}
+
+.navButton{
+  color: var(--grey-button);
+  font-size: 0.67rem;
+  width: 100%;
+  padding: .6rem;
+  transition:background-color .2s ease-in-out;
+  display: flex;
+  align-items: center;
+  border-radius: .5rem;
+}
+
+.navButton:hover{
+  cursor: pointer;
+  background-color: #f2f2f2;
+  transition:background-color .2s ease-in-out;
+}
+
+.logout{
+  color: var(--red);
+}
+
+.icon {
+  margin-right: .5rem;
+}

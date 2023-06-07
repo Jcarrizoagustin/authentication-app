@@ -1,0 +1,10 @@
+.container{
+  border-radius: .4rem;
+  overflow: hidden;
+}
+
+.menuImg{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

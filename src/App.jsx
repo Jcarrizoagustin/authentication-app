@@ -1,10 +1,15 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Login from "./componets/Login";
+import JoinPage from "./pages/JoinPage";
+import PersonalInfoPage from "./pages/PersonalInfoPage";
 
 function App() {
   return (
     <>
-      <Login />
+      <Routes>
+        <Route path="/" element={<JoinPage />} />
+        <Route path="/personal" element={<PersonalInfoPage />} />
+      </Routes>
     </>
   );
 }

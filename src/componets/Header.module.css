@@ -1,0 +1,27 @@
+.header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.name{
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-left: 1rem;
+}
+
+.arrow {
+  margin-left: .5rem;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
