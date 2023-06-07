@@ -26,7 +26,6 @@ function Login() {
       </div>
       <Button text={"Start coding now"} />
       <Social />
-      {/*<LoginFooter />*/}
     </div>
   );
 }

@@ -1,0 +1,18 @@
+.container {
+  width: 47rem;
+  margin: 3rem auto;
+}
+
+.link{
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  list-style: none;
+  text-decoration: none;
+  color: var(--blue-text);
+  font-weight: 400;
+}
+
+.backIcon {
+  font-size: 1rem;
+}

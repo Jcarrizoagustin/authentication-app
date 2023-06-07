@@ -1,5 +1,6 @@
 import Header from "../componets/Header";
 import styles from "./PersonalInfoPage.module.css";
+import PersonalInfoContent from "../componets/PersonalInfoContent";
 
 function PersonalInfoPage() {
   return (
@@ -7,6 +8,7 @@ function PersonalInfoPage() {
       <div className={styles.header}>
         <Header />
       </div>
+      <PersonalInfoContent />
     </div>
   );
 }

@@ -1,0 +1,43 @@
+.container {
+  margin-top: 3rem;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: .6rem;
+}
+
+.header {
+  width: 100%;
+  padding:1.5rem 2.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textTitle{
+  font-size: 1.33rem;
+  font-weight: 400;
+}
+
+.textSubtitle{
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--grey);
+}
+
+.headerButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.28rem;
+  width: 5.3rem;
+  border: 1px solid var(--grey);
+  border-radius: 0.67rem;
+  color: var(--grey);
+  font-weight: 500;
+  font-size: .9rem;
+  
+}
+
+.headerButton:hover{
+  cursor: pointer;
+}

@@ -1,0 +1,22 @@
+.row{
+  display: flex;
+  align-items: center; 
+  border-top: 1px solid var(--border-color);
+  width: 100%;
+  padding: 1.5rem 2.78rem;
+}
+.textContainer{
+  width: 30%;
+}
+
+.text {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--border-color);
+}
+
+.content {
+  width: 70%;
+  text-overflow: ellipsis;
+}
+
