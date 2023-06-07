@@ -1,0 +1,21 @@
+.button {
+  margin-top: 1.5rem;
+  width: 100%;
+  border-radius: .44rem;
+  background-color: var(--blue-bg);
+  height: 2.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: .88rem;
+  color: white;
+
+}
+
+.button:hover{
+  cursor: pointer;
+}
+

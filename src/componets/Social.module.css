@@ -1,0 +1,30 @@
+.social {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.94rem;
+}
+
+.text {
+  font-size: .77rem;
+  font-weight: 400;
+  color: var(--grey);
+}
+
+.icons{
+  margin-top: 1.2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.textBlue {
+  color: var(--blue-text);
+}
+
+.textBlue:hover{
+  cursor: pointer;
+}
