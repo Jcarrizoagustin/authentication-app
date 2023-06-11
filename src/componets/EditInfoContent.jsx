@@ -1,7 +1,7 @@
 import styles from "./EditInfoContent.module.css";
 import { Link } from "react-router-dom";
 import EditInfoForm from "./forms/EditInfoForm";
-import LoginFooter from "./LoginFooter";
+import Footer from "./Footer";
 function EditInfoContent() {
   return (
     <div className={styles.container}>
@@ -12,7 +12,7 @@ function EditInfoContent() {
         Back
       </Link>
       <EditInfoForm />
-      <LoginFooter />
+      <Footer />
     </div>
   );
 }

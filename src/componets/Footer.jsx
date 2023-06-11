@@ -1,4 +1,4 @@
-import styles from "./LoginFooter.module.css";
+import styles from "./Footer.module.css";
 
 function LoginFooter() {
   return (

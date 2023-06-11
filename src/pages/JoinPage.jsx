@@ -1,11 +1,11 @@
 import styles from "./JoinPage.module.css";
-import Login from "../componets/Login";
-import LoginFooter from "../componets/LoginFooter";
+import Register from "../componets/Register";
+import Footer from "../componets/Footer";
 function JoinPage() {
   return (
     <div className={styles.container}>
-      <Login />
-      <LoginFooter />
+      <Register />
+      <Footer />
     </div>
   );
 }

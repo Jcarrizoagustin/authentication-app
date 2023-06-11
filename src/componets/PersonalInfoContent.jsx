@@ -2,13 +2,13 @@ import styles from "./PersonalInfoContent.module.css";
 import PersonalInfoContentBody from "./PersonalInfoContentBody";
 import PersonalInfoContentHeader from "./PersonalInfoContentHeader";
 
-import LoginFooter from "./LoginFooter";
+import Footer from "./Footer";
 function PersonalInfoContent() {
   return (
     <div className={styles.container}>
       <PersonalInfoContentHeader />
       <PersonalInfoContentBody />
-      <LoginFooter />
+      <Footer />
     </div>
   );
 }
