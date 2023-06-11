@@ -1,7 +1,29 @@
+import { useState } from "react";
 import ImgProfile from "../ImgProfile";
 import styles from "./EditInfoForm.module.css";
 
 function EditInfoForm() {
+  const initialData = {
+    // Sera reemplazada por un fetch a los
+    // datos del usuario;
+
+    name: "",
+    bio: "",
+    phone: "",
+    email: "",
+    password: "",
+  };
+  const [data, setData] = useState(initialData);
+
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(data);
+  };
+  const handleChange = (e) => {
+    console.log(e.target.id);
+    setData({ ...data, [e.target.id]: e.target.value });
+  };
+
   return (
     <form className={styles.container}>
       <h3 className={styles.title}>Change Info</h3>
@@ -35,10 +57,12 @@ function EditInfoForm() {
           Name
         </label>
         <input
+          onChange={handleChange}
           id="name"
           className={styles.input}
           placeholder="Enter your name..."
           type="text"
+          value={data.name}
         />
       </div>
 
@@ -47,10 +71,12 @@ function EditInfoForm() {
           Bio
         </label>
         <textarea
+          onChange={handleChange}
           id="bio"
           className={styles.input}
           placeholder="Enter your bio..."
           type="text"
+          value={data.bio}
         />
       </div>
 
@@ -59,10 +85,12 @@ function EditInfoForm() {
           Phone
         </label>
         <input
+          onChange={handleChange}
           id="phone"
           className={styles.input}
           placeholder="Enter your phone..."
           type="text"
+          value={data.phone}
         />
       </div>
 
@@ -71,10 +99,12 @@ function EditInfoForm() {
           Email
         </label>
         <input
+          onChange={handleChange}
           id="email"
           className={styles.input}
           placeholder="Enter your email..."
           type="email"
+          value={data.email}
         />
       </div>
 
@@ -83,14 +113,16 @@ function EditInfoForm() {
           Password
         </label>
         <input
+          onChange={handleChange}
           id="password"
           className={styles.input}
           placeholder="Enter your password..."
           type="password"
+          value={data.password}
         />
       </div>
 
-      <div className={styles.button}>
+      <div onClick={submit} className={styles.button}>
         <h4 className={styles.textBtn}>Save</h4>
       </div>
     </form>
