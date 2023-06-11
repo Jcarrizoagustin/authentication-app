@@ -2,8 +2,9 @@ import Button from "./Button";
 import styles from "./Register.module.css";
 import Logo from "./Logo";
 import Social from "./Social";
+import CardInputs from "./CardInputs";
 
-function Login() {
+function Register() {
   return (
     <div className={styles.container}>
       <Logo />
@@ -14,20 +15,11 @@ function Login() {
         Master web development by making real-life projects. There are multiple
         paths for you to choose
       </p>
-
-      <div className={styles.inputs}>
-        {/* TODO: Agregar iconos en placeholder */}
-        <input className={styles.input} placeholder="Email" type="text" />
-        <input
-          className={styles.input}
-          placeholder="Password"
-          type="password"
-        />
-      </div>
+      <CardInputs />
       <Button text={"Start coding now"} />
-      <Social />
+      <Social path={"Register"} />
     </div>
   );
 }
 
-export default Login;
+export default Register;

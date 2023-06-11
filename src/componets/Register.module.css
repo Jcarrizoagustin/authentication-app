@@ -9,9 +9,9 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+
+  margin: 0 auto;
 }
-
-
 
 .title {
   font-size: 1rem;
@@ -26,27 +26,7 @@
   font-weight: 400;
 }
 
-.inputs {
-  width: 100%;
-  margin-top: 1.9rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.77rem;
-}
 
-.input {
-  width: 100%;
-  height: 2.66rem;
-  border-radius: .44rem;
-  border: 1px solid var(--border-color);
-  padding: .8rem .6rem;
-  color: var(--grey);
-}
-
-.input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  font-family: var(--font-primary);
-  font-weight: 400;
-}
 
 @media screen and (max-width: 425px){
   .container {

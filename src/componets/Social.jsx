@@ -1,7 +1,8 @@
 import styles from "./Social.module.css";
 import SocialIcon from "./SocialIcon";
+import { Link } from "react-router-dom";
 
-function Social() {
+function Social({ path }) {
   return (
     <div className={styles.social}>
       <p className={styles.text}>or continue with these social profile</p>
@@ -12,7 +13,21 @@ function Social() {
         <SocialIcon imgSrc={"/Gihub.svg"} />
       </div>
       <p className={styles.text}>
-        Adready a member? <span className={styles.textBlue}>Login</span>{" "}
+        {path === "Register" ? (
+          <>
+            Adready a member?{" "}
+            <Link to={"/login"} className={styles.textBlue}>
+              Login
+            </Link>{" "}
+          </>
+        ) : (
+          <>
+            Don´t have an acount yet?{" "}
+            <Link to={"/"} className={styles.textBlue}>
+              Register
+            </Link>{" "}
+          </>
+        )}
       </p>
     </div>
   );

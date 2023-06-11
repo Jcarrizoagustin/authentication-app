@@ -1,6 +1,6 @@
 import styles from "./Footer.module.css";
 
-function LoginFooter() {
+function Footer() {
   return (
     <div className={styles.footer}>
       <p className={styles.text}>created by Agustin</p>
@@ -9,4 +9,4 @@ function LoginFooter() {
   );
 }
 
-export default LoginFooter;
+export default Footer;
