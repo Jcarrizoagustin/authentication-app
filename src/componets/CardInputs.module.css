@@ -9,13 +9,22 @@
 .input {
   width: 100%;
   height: 2.66rem;
-  border-radius: .44rem;
+  border-radius: 0.44rem;
   border: 1px solid var(--border-color);
-  padding: .8rem .6rem;
+  padding: 0.8rem 2rem;
   color: var(--grey);
 }
 
-.input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  font-family: var(--font-primary);
-  font-weight: 400;
+.iconoInput {
+  position: relative;
+}
+
+
+.icono {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  position: absolute;
+  left: 8px; /* Ajusta esta posición según el espacio deseado entre el ícono y el borde izquierdo */
+  top: 8px; /* Ajusta esta posición según el espacio deseado entre el ícono y el borde superior */
+  font-family: 'Material Icons'; /* Asegúrate de tener la fuente de iconos de Google Material cargada */
+  color: #999;
 }

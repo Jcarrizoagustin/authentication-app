@@ -8,12 +8,18 @@ function Header() {
   const [isActive, setIsActive] = useState(false);
 
   const toggle = () => {
+    console.log('Toggle')
     setIsActive(!isActive);
   };
 
+  const handleClickLogo = () => {
+    console.log('Logo click')
+    setIsActive(false);
+  }
+
   return (
     <div className={styles.header}>
-      <Logo />
+      <Logo handleClickLogo={handleClickLogo} />
       <div className={styles.menu}>
         <ImgProfile
           src={

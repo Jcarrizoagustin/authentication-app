@@ -4,8 +4,17 @@ function CardInputs() {
   return (
     <div className={styles.inputs}>
       {/* TODO: Agregar iconos en placeholder */}
-      <input className={styles.input} placeholder="Email" type="text" />
-      <input className={styles.input} placeholder="Password" type="password" />
+      <div className={styles.iconoInput}>
+          <span className={styles.icono}>&#xe158;</span>
+          <input className={styles.input} placeholder="Mail" type="text" />
+      </div>
+
+      <div className={styles.iconoInput}>
+          <span className={styles.icono}>&#xe897;</span>
+          <input className={styles.input} placeholder="Password" type="password" />
+      </div>
+      
+      
     </div>
   );
 }

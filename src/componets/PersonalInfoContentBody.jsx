@@ -30,7 +30,7 @@ function PersonalInfoContentBody() {
       <PersonalInfoContentBodyRow text={"NAME"} content={"Xhante Neal"} />
       <PersonalInfoContentBodyRow
         text={"BIO"}
-        content={"I am a software developer and a big fan of devchallenges..."}
+        content={"I am a software developer and a big fan of devchallenges"}
       />
       <PersonalInfoContentBodyRow text={"PHONE"} content={"908249274292"} />
       <PersonalInfoContentBodyRow

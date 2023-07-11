@@ -6,7 +6,6 @@ function EditInfoForm() {
   const initialData = {
     // Sera reemplazada por un fetch a los
     // datos del usuario;
-
     name: "",
     bio: "",
     phone: "",
@@ -31,6 +30,7 @@ function EditInfoForm() {
 
       <div className={styles.editImg}>
         <div className={styles.img}>
+          {/*<input type="file" name="profileImg" id="profileImg" />*/}
           <span className={`material-symbols-outlined ${styles.icon}`}>
             photo_camera
           </span>

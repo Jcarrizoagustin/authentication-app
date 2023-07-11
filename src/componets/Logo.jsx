@@ -1,7 +1,7 @@
 import styles from "./Logo.module.css";
 
-function Logo() {
-  return <img className={styles.logo} src="/devchallenges.svg" />;
+function Logo({handleClickLogo}) {
+  return <img onClick={handleClickLogo} className={styles.logo} src="/devchallenges.svg" />;
 }
 
 export default Logo;

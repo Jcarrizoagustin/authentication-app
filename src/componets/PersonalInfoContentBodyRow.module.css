@@ -17,6 +17,20 @@
 
 .content {
   width: 70%;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis ellipsis;
 }
 
+@media screen and (max-width: 500px){
+  .row {
+    justify-content: space-between;
+    padding: 1.2rem;
+    
+  }
+
+  .textContainer {
+    width: auto;
+  }
+
+  
+  
+}
