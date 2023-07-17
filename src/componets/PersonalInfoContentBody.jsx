@@ -2,7 +2,25 @@ import styles from "./PersonalInfoContentBody.module.css";
 import PersonalInfoContentBodyRow from "./PersonalInfoContentBodyRow";
 import ImgProfile from "./ImgProfile";
 import { Link } from "react-router-dom";
+import { useEffect,useState } from "react";
 function PersonalInfoContentBody() {
+  const [personalInfo, setPersonalInfo] = useState({})
+
+  const getInfo = async () => {
+    const res = await fetch('http://localhost:8080/api/user/1')
+    const json = await res.json()
+    if(res.ok){
+      setPersonalInfo(json)
+    }else{
+      console.error(json)
+    }
+  }
+
+
+  useEffect(() => {
+    getInfo()
+  },[])
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -21,21 +39,23 @@ function PersonalInfoContentBody() {
         content={
           <ImgProfile
             src={
-              "https://landing.derco.com.pe/plataforma/leads_old/assets/pages/media/pages/profile_user.jpg"
+              //TODO this path will be replaced with userId instead of 3.
+              //get userId from localStorage or jwt.
+              import.meta.env.VITE_BASE_URL_GET_IMAGE+'1'
             }
             size={{ width: "4rem", height: "4rem" }}
           />
         }
       />
-      <PersonalInfoContentBodyRow text={"NAME"} content={"Xhante Neal"} />
+      <PersonalInfoContentBodyRow text={"NAME"} content={personalInfo.name} />
       <PersonalInfoContentBodyRow
         text={"BIO"}
-        content={"I am a software developer and a big fan of devchallenges"}
+        content={personalInfo.bio}
       />
-      <PersonalInfoContentBodyRow text={"PHONE"} content={"908249274292"} />
+      <PersonalInfoContentBodyRow text={"PHONE"} content={personalInfo.phone} />
       <PersonalInfoContentBodyRow
         text={"EMAIL"}
-        content={"xanthe.neal@gmail.com"}
+        content={personalInfo.email}
       />
       <PersonalInfoContentBodyRow text={"PASSWORD"} content={"************"} />
     </div>

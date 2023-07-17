@@ -39,6 +39,10 @@
   margin-right: 2rem;
 }
 
+.file{
+  display: none;
+}
+
 .img:hover{
   cursor: pointer;
 }

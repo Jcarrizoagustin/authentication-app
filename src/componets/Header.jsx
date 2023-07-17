@@ -3,27 +3,26 @@ import styles from "./Header.module.css";
 import ImgProfile from "./ImgProfile";
 import Logo from "./Logo";
 import Nav from "./Nav";
+import { useClickAway } from "@uidotdev/usehooks";
 
 function Header() {
   const [isActive, setIsActive] = useState(false);
 
   const toggle = () => {
-    console.log('Toggle')
     setIsActive(!isActive);
   };
 
-  const handleClickLogo = () => {
-    console.log('Logo click')
+  const ref = useClickAway(() => {
     setIsActive(false);
-  }
+  });
 
   return (
     <div className={styles.header}>
-      <Logo handleClickLogo={handleClickLogo} />
+      <Logo />
       <div className={styles.menu}>
         <ImgProfile
           src={
-            "https://landing.derco.com.pe/plataforma/leads_old/assets/pages/media/pages/profile_user.jpg"
+            import.meta.env.VITE_BASE_URL_GET_IMAGE+'1'
           }
           size={{ width: "2rem", height: "2rem" }}
         />
@@ -36,7 +35,7 @@ function Header() {
         </span>
       </div>
 
-      {isActive && <Nav />}
+      {isActive && <Nav ref={ref} />}
     </div>
   );
 }

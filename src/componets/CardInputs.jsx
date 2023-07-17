@@ -1,20 +1,30 @@
 import styles from "./CardInputs.module.css";
+import {useField} from '../hooks/useField'
+import { useEffect } from "react";
 
-function CardInputs() {
+function CardInputs({changeData}) {
+  const email = useField({type:'email'})
+  const password = useField({type:'password'})
+
+  useEffect(() => {
+    changeData(email.type,email.value)
+  },[email.value])
+
+  useEffect(() => {
+    changeData(password.type,password.value)
+  },[password.value])
+
   return (
     <div className={styles.inputs}>
-      {/* TODO: Agregar iconos en placeholder */}
       <div className={styles.iconoInput}>
           <span className={styles.icono}>&#xe158;</span>
-          <input className={styles.input} placeholder="Mail" type="text" />
+          <input className={styles.input} placeholder="Mail" {...email} />
       </div>
 
       <div className={styles.iconoInput}>
           <span className={styles.icono}>&#xe897;</span>
-          <input className={styles.input} placeholder="Password" type="password" />
+          <input className={styles.input} placeholder="Password" type="password" {...password}/>
       </div>
-      
-      
     </div>
   );
 }

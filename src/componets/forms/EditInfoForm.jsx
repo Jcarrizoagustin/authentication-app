@@ -1,42 +1,60 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ImgProfile from "../ImgProfile";
 import styles from "./EditInfoForm.module.css";
 
 function EditInfoForm() {
+  const inputRef = useRef()
   const initialData = {
-    // Sera reemplazada por un fetch a los
-    // datos del usuario;
     name: "",
     bio: "",
     phone: "",
     email: "",
     password: "",
+    image:null
   };
   const [data, setData] = useState(initialData);
-
-  const submit = (e) => {
+  // TODO: enviar imagenes
+  const submit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    const formData = new FormData()
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key,value)
+    });
+    //TODO: the path will contain the user id instead 1
+    const res = await fetch('http://localhost:8080/api/user/1',{
+      method:'PUT',
+      body:formData
+    })
+    const json = await res.json()
+    console.log(json)
   };
   const handleChange = (e) => {
-    console.log(e.target.id);
-    setData({ ...data, [e.target.id]: e.target.value });
+    
+    if(e.target.type === 'file'){
+      setData({ ...data, [e.target.id]: e.target.files[0] });
+    }else{
+      setData({ ...data, [e.target.id]: e.target.value });
+    }
   };
 
+  const handleClickFile = () => {
+    inputRef.current.click()
+  }
+
   return (
-    <form className={styles.container}>
+    <form className={styles.container} encType="multipart/form-data">
       <h3 className={styles.title}>Change Info</h3>
       <p className={styles.text}>Changes will be reflected to every services</p>
 
       <div className={styles.editImg}>
         <div className={styles.img}>
-          {/*<input type="file" name="profileImg" id="profileImg" />*/}
-          <span className={`material-symbols-outlined ${styles.icon}`}>
+          <input ref={inputRef} className={styles.file} type="file" name="image" id="image" accept="image/png, image/jpeg"  onChange={handleChange}/>
+          <span className={`material-symbols-outlined ${styles.icon}`} onClick={handleClickFile}>
             photo_camera
           </span>
           <ImgProfile
             src={
-              "https://landing.derco.com.pe/plataforma/leads_old/assets/pages/media/pages/profile_user.jpg"
+              import.meta.env.VITE_BASE_URL_GET_IMAGE+'1'
             }
             size={{
               width: "4rem",
