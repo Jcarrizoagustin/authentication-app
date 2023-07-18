@@ -1,20 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import ImgProfile from "./ImgProfile";
 import Logo from "./Logo";
 import Nav from "./Nav";
-import { useClickAway } from "@uidotdev/usehooks";
+
 
 function Header() {
+  const initialValues = {
+    "id": 3,
+    "name": "Juan Agusti",
+    "bio": "Casi Ingeniero en Informática",
+    "phone": "+543834809777",
+    "email": "agustin14carrizo@gmail.com"
+  }
   const [isActive, setIsActive] = useState(false);
+  const [user,setUser] = useState(initialValues)
 
   const toggle = () => {
     setIsActive(!isActive);
   };
 
-  const ref = useClickAway(() => {
-    setIsActive(false);
-  });
+  const getUserInfo = async () => {
+    const res = await fetch(import.meta.env.VITE_BASE_URL_GET_USER + '2')
+    const json = await res.json()
+    if(res.ok){
+      setUser(json)
+    }else{
+      console.error('Ocurrio un error')
+    }
+  }
+
+  useEffect(() => {
+    getUserInfo()
+  },[])
 
   return (
     <div className={styles.header}>
@@ -26,7 +44,7 @@ function Header() {
           }
           size={{ width: "2rem", height: "2rem" }}
         />
-        <p className={styles.name}>Xhante Neal</p>
+        <p className={styles.name}>{user.name}</p>
         <span
           onClick={toggle}
           className={`material-symbols-outlined ${styles.arrow}`}
