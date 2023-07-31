@@ -11,7 +11,7 @@ function EditInfoContent() {
         </span>{" "}
         Back
       </Link>
-      <EditInfoForm />
+      <EditInfoForm/>
       <Footer />
     </div>
   );

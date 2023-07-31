@@ -5,23 +5,39 @@ import Logo from "./Logo";
 import Nav from "./Nav";
 
 
-function Header() {
+function Header({setAuth}) {
+
+  
   const initialValues = {
-    "id": 3,
-    "name": "Juan Agusti",
-    "bio": "Casi Ingeniero en Informática",
-    "phone": "+543834809777",
-    "email": "agustin14carrizo@gmail.com"
+    "id": sessionStorage.getItem('id'),
+    "name": "",
+    "bio": "",
+    "phone": "",
+    "email": ""
   }
   const [isActive, setIsActive] = useState(false);
   const [user,setUser] = useState(initialValues)
+  const [urlImg,setUrlImg] = useState('/img/defaultImg.png')
+
 
   const toggle = () => {
     setIsActive(!isActive);
   };
 
+  const getUrlImage = async () => {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL_GET_IMAGE}`+sessionStorage.getItem('id'))
+    if(res.ok){
+      setUrlImg(`${import.meta.env.VITE_BASE_URL_GET_IMAGE}`+sessionStorage.getItem('id'))
+    }
+  }
+
   const getUserInfo = async () => {
-    const res = await fetch(import.meta.env.VITE_BASE_URL_GET_USER + '2')
+    const res = await fetch(import.meta.env.VITE_BASE_URL_GET_USER + sessionStorage.getItem('id'),{
+      headers:{
+        Authorization:'Bearer ' +sessionStorage.getItem('token')
+      }
+    }
+    )
     const json = await res.json()
     if(res.ok){
       setUser(json)
@@ -32,6 +48,7 @@ function Header() {
 
   useEffect(() => {
     getUserInfo()
+    getUrlImage()
   },[])
 
   return (
@@ -40,7 +57,7 @@ function Header() {
       <div className={styles.menu}>
         <ImgProfile
           src={
-            import.meta.env.VITE_BASE_URL_GET_IMAGE+'1'
+            urlImg
           }
           size={{ width: "2rem", height: "2rem" }}
         />
@@ -53,7 +70,7 @@ function Header() {
         </span>
       </div>
 
-      {isActive && <Nav ref={ref} />}
+      {isActive && <Nav setAuth={setAuth}/>}
     </div>
   );
 }

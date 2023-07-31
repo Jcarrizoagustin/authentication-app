@@ -1,45 +1,99 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import ImgProfile from "../ImgProfile";
 import styles from "./EditInfoForm.module.css";
-
+import { useNavigate } from "react-router-dom";
 function EditInfoForm() {
   const inputRef = useRef()
+  const navigate = useNavigate()
   const initialData = {
     name: "",
     bio: "",
     phone: "",
     email: "",
-    password: "",
-    image:null
+    password: ""
   };
+  
   const [data, setData] = useState(initialData);
-  // TODO: enviar imagenes
+  const [img,setImg] = useState(false)
+  const [urlImg,setUrlImg] = useState('/img/defaultImg.png')
+
+  
+  const getUrlImage = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL_GET_IMAGE}`+sessionStorage.getItem('id'))
+      if(res.ok){
+        setUrlImg(`${import.meta.env.VITE_BASE_URL_GET_IMAGE}`+sessionStorage.getItem('id'))
+      }else{
+        throw new Error('Error al obtener la imagen')
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleChangeImg = () => {
+    setImg(true)
+  }
+
+
+  const submitImgData = async () => {
+    if(img){
+      const formData = new FormData()
+      formData.append('image',inputRef.current.files[0])
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL_GET_IMAGE}`+sessionStorage.getItem('id'),{
+        method:'POST',
+        headers:{
+          Authorization:'Bearer ' + sessionStorage.getItem('token')
+        },
+        body:formData
+      })
+      if(!res.ok){
+        console.error('Error al actualizar la imagen')
+      }
+    }  
+  }
+
+
   const submit = async (e) => {
     e.preventDefault();
-    const formData = new FormData()
-    Object.entries(data).forEach(([key, value]) => {
-      formData.append(key,value)
-    });
-    //TODO: the path will contain the user id instead 1
-    const res = await fetch('http://localhost:8080/api/user/1',{
-      method:'PUT',
-      body:formData
-    })
-    const json = await res.json()
-    console.log(json)
-  };
-  const handleChange = (e) => {
-    
-    if(e.target.type === 'file'){
-      setData({ ...data, [e.target.id]: e.target.files[0] });
-    }else{
-      setData({ ...data, [e.target.id]: e.target.value });
+    try{  
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL_GET_USER}`+sessionStorage.getItem('id'),{
+        method:'PUT',
+        body:JSON.stringify(data),
+        headers:{
+          Authorization:'Bearer ' + sessionStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+      })
+      if(res.ok){
+        navigate('/profile')
+      }else{
+        throw new Error('Error al actualizar el usuario')
+      }
+      
+    }catch(error){
+      console.error(error)
     }
+  };
+
+  const submitInfo = (e) => {
+    submitImgData()
+    submit(e);
+  }
+
+  const handleChange = (e) => {
+    console.log(data)
+    setData({ ...data, [e.target.id]: e.target.value });
   };
 
   const handleClickFile = () => {
     inputRef.current.click()
   }
+
+  useEffect(() => {
+    getUrlImage()
+  },[])
+  
 
   return (
     <form className={styles.container} encType="multipart/form-data">
@@ -48,13 +102,13 @@ function EditInfoForm() {
 
       <div className={styles.editImg}>
         <div className={styles.img}>
-          <input ref={inputRef} className={styles.file} type="file" name="image" id="image" accept="image/png, image/jpeg"  onChange={handleChange}/>
+          <input ref={inputRef} className={styles.file} type="file" name="image" id="image" accept="image/png, image/jpeg"  onChange={handleChangeImg}/>
           <span className={`material-symbols-outlined ${styles.icon}`} onClick={handleClickFile}>
             photo_camera
           </span>
           <ImgProfile
             src={
-              import.meta.env.VITE_BASE_URL_GET_IMAGE+'1'
+              urlImg
             }
             size={{
               width: "4rem",
@@ -140,7 +194,7 @@ function EditInfoForm() {
         />
       </div>
 
-      <div onClick={submit} className={styles.button}>
+      <div onClick={submitInfo} className={styles.button}>
         <h4 className={styles.textBtn}>Save</h4>
       </div>
     </form>

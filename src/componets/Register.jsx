@@ -4,14 +4,17 @@ import Logo from "./Logo";
 import Social from "./Social";
 import CardInputs from "./CardInputs";
 import { useState } from "react";
+import { Login } from "../services/AuthService";
+import { useNavigate } from "react-router-dom";
 const initialValues = {
   email: '',
   password: ''
 }
 
-function Register() {
+function Register({setAuth}) {
 
   const [data, setData] = useState(initialValues)
+  const navigate = useNavigate()
 
   const changeData = (key,value) => {
     setData({...data,[key]:value})
@@ -19,7 +22,7 @@ function Register() {
   }
 
   const sendData = async () => {
-    const res = await fetch('http://localhost:8080/api/user/register',
+    const res = await fetch(`${import.meta.env.VITE_BASE_AUTH_REGISTER}`,
     {method: 'POST',
      body: JSON.stringify(data),
      headers:{
@@ -27,6 +30,11 @@ function Register() {
      }
     })
     const json = await res.json()
+    if(res.ok){
+      Login(json.token,json.id)
+      setAuth(true)
+      navigate('/profile')
+    }
     console.log(json)
   }
 

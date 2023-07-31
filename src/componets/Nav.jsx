@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
+import {Logout} from "../services/AuthService"
 
-function Nav() {
+function Nav({setAuth}) {
+
+  const handleLogout = () => {
+    if(confirm('Estas seguro que deseas cerrar sesion ?')){
+      Logout()
+      setAuth(false)
+    }
+  }
+
   return (
     <nav className={styles.nav}>
       <Link to={"/profile"} style={{ textDecoration: "none" }}>
@@ -25,7 +34,7 @@ function Nav() {
           margin: ".8rem 0",
         }}
       />
-      <div className={`${styles.navButton} ${styles.logout}`}>
+      <div onClick={handleLogout} className={`${styles.navButton} ${styles.logout}`}>
         <span className={`material-symbols-outlined ${styles.icon}`}>
           logout
         </span>

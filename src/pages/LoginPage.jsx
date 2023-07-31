@@ -1,12 +1,14 @@
 import styles from "./LoginPage.module.css";
 import Login from "../componets/Login";
 import Footer from "../componets/Footer";
-function LoginPage() {
+import { Navigate } from "react-router-dom";
+function LoginPage({auth,setAuth}) {
+
   return (
-    <div className={styles.container}>
-      <Login />
-      <Footer />
-    </div>
+    auth ?<Navigate to={'/profile'}/>: <div className={styles.container}>
+    <Login setAuth={setAuth}/>
+    <Footer />
+  </div> 
   );
 }
 

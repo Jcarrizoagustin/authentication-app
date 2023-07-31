@@ -7,7 +7,7 @@ function PersonalInfoContent() {
   return (
     <div className={styles.container}>
       <PersonalInfoContentHeader />
-      <PersonalInfoContentBody />
+      <PersonalInfoContentBody/>
       <Footer />
     </div>
   );

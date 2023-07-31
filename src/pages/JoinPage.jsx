@@ -1,12 +1,16 @@
 import styles from "./JoinPage.module.css";
 import Register from "../componets/Register";
 import Footer from "../componets/Footer";
-function JoinPage() {
+import { Navigate } from "react-router-dom";
+function JoinPage({auth,setAuth}) {
+
+  
   return (
-    <div className={styles.container}>
-      <Register />
-      <Footer />
-    </div>
+     auth ? <Navigate to={'/profile'}  replace={true}/> :
+     <div className={styles.container}>
+    <Register setAuth={setAuth}/>
+    <Footer />
+  </div>
   );
 }
 
