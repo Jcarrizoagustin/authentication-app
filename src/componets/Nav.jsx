@@ -1,17 +1,30 @@
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
 import {Logout} from "../services/AuthService"
+import toast from 'react-hot-toast';
 
 function Nav({setAuth}) {
 
   const handleLogout = () => {
-    if(confirm('Estas seguro que deseas cerrar sesion ?')){
-      Logout()
-      setAuth(false)
-    }
+    toast((t) => (
+      <span>
+        Desea cerrar sesion ?
+        <button onClick={() => {
+          toast.dismiss(t.id)
+          Logout()
+          setAuth(false)
+        }} className={styles.iconConfirm}>
+          ✔️
+        </button>
+        <button onClick={() => toast.dismiss(t.id)} className={styles.iconConfirm}>
+        ❌
+        </button>
+      </span>
+    )); 
   }
 
   return (
+    
     <nav className={styles.nav}>
       <Link to={"/profile"} style={{ textDecoration: "none" }}>
         <div className={styles.navButton}>
@@ -41,6 +54,8 @@ function Nav({setAuth}) {
         Logout
       </div>
     </nav>
+    
+    
   );
 }
 

@@ -37,3 +37,20 @@
 .icon {
   margin-right: .5rem;
 }
+
+.iconConfirm {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  margin: 0 10px;
+
+  border: none;
+  background: transparent;
+
+  transition: .3s transform;
+}
+
+.iconConfirm:hover{
+  cursor: pointer;
+  transform: scale(1.3);
+}

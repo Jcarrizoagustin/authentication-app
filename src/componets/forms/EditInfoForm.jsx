@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import ImgProfile from "../ImgProfile";
 import styles from "./EditInfoForm.module.css";
 import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 function EditInfoForm() {
   const inputRef = useRef()
   const navigate = useNavigate()
@@ -14,7 +15,6 @@ function EditInfoForm() {
   };
   
   const [data, setData] = useState(initialData);
-  const [img,setImg] = useState(false)
   const [urlImg,setUrlImg] = useState('/img/defaultImg.png')
 
   
@@ -31,13 +31,11 @@ function EditInfoForm() {
     }
   }
 
-  const handleChangeImg = () => {
-    setImg(true)
-  }
+  
 
 
   const submitImgData = async () => {
-    if(img){
+    if(inputRef.current.files[0]){
       const formData = new FormData()
       formData.append('image',inputRef.current.files[0])
       const res = await fetch(`${import.meta.env.VITE_BASE_URL_GET_IMAGE}`+sessionStorage.getItem('id'),{
@@ -53,6 +51,10 @@ function EditInfoForm() {
     }  
   }
 
+  const handleSuccess = () => {
+    toast.success('User info updated successfully!');
+  }
+
 
   const submit = async (e) => {
     e.preventDefault();
@@ -66,6 +68,7 @@ function EditInfoForm() {
         }
       })
       if(res.ok){
+        handleSuccess()
         navigate('/profile')
       }else{
         throw new Error('Error al actualizar el usuario')
@@ -82,7 +85,6 @@ function EditInfoForm() {
   }
 
   const handleChange = (e) => {
-    console.log(data)
     setData({ ...data, [e.target.id]: e.target.value });
   };
 
@@ -102,7 +104,7 @@ function EditInfoForm() {
 
       <div className={styles.editImg}>
         <div className={styles.img}>
-          <input ref={inputRef} className={styles.file} type="file" name="image" id="image" accept="image/png, image/jpeg"  onChange={handleChangeImg}/>
+          <input ref={inputRef} className={styles.file} type="file" name="image" id="image" accept="image/png, image/jpeg"/>
           <span className={`material-symbols-outlined ${styles.icon}`} onClick={handleClickFile}>
             photo_camera
           </span>

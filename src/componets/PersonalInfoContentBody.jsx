@@ -26,10 +26,10 @@ function PersonalInfoContentBody() {
       if(res.ok){
         setUrlImg(`${import.meta.env.VITE_BASE_URL_GET_IMAGE}`+sessionStorage.getItem('id'))
       }else{
-        throw new Error('Error al obtener la imagen')
+        throw new Error('El ususario no posee imagen de perfil. Se carga la predeterminada')
       }
     } catch (error) {
-      console.error(error)
+      console.warn(error)
     }
   }
 

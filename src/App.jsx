@@ -5,6 +5,7 @@ import PersonalInfoPage from "./pages/PersonalInfoPage";
 import EditInfoPage from "./pages/EditInfoPage";
 import LoginPage from "./pages/LoginPage";
 import { useEffect, useState } from "react";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [auth,setAuth] = useState(false)
@@ -25,6 +26,7 @@ function App() {
         {/* TODO: create an 404 error page (NotFound element)*/}
         {/*<Route path='*' element={<NotFound />} />*/}
       </Routes>
+      <Toaster />
     </>
   );
 }

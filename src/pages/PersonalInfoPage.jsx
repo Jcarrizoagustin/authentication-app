@@ -14,5 +14,4 @@ function PersonalInfoPage({auth,setAuth}) {
   </div> : <Navigate to={'/login'} replace={true}/>
   );
 }
-
 export default PersonalInfoPage;

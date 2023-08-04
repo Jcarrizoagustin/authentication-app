@@ -6,6 +6,7 @@ import CardInputs from "./CardInputs";
 import { useState } from "react";
 import { Login } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 const initialValues = {
   email: '',
   password: ''
@@ -18,7 +19,6 @@ function Register({setAuth}) {
 
   const changeData = (key,value) => {
     setData({...data,[key]:value})
-    console.log(data)
   }
 
   const sendData = async () => {
@@ -33,7 +33,10 @@ function Register({setAuth}) {
     if(res.ok){
       Login(json.token,json.id)
       setAuth(true)
+      toast.success('Welcome !')
       navigate('/profile')
+    }else{
+      toast.error(json.message.slice(26,json.message.length))
     }
     console.log(json)
   }

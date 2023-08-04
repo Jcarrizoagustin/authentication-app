@@ -5,6 +5,7 @@ import Button from "./Button";
 import CardInputs from "./CardInputs";
 import { useState } from "react";
 import {Login as UserLogin} from '../services/AuthService'
+import toast from 'react-hot-toast';
 const initialValues = {
   email: '',
   password: ''
@@ -32,7 +33,12 @@ function Login({setAuth}) {
         const json = await res.json()
         if(res.ok){
           UserLogin(json.token,json.id)
+          toast.success('Welcome !',{
+            duration:2000
+          })
           setAuth(true)
+        }else{
+          toast.error('Error')
         }
     } catch (error) {
         console.error(error)
