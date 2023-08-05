@@ -46,9 +46,9 @@
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-## Host
+## Status
 
-![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/28226579-adaf-45c6-83fb-f968e4768bc7/deploy-status)](https://app.netlify.com/sites/storied-axolotl-6907c0/deploys)
 
 
 ## Overview
