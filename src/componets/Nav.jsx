@@ -8,7 +8,7 @@ function Nav({setAuth}) {
   const handleLogout = () => {
     toast((t) => (
       <span>
-        Desea cerrar sesion ?
+        Are you sure you want to logout?
         <button onClick={() => {
           toast.dismiss(t.id)
           Logout()
@@ -20,7 +20,11 @@ function Nav({setAuth}) {
         ❌
         </button>
       </span>
-    )); 
+    ), {
+      style:{
+        width:'200px'
+      }
+    }); 
   }
 
   return (

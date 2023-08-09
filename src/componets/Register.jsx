@@ -36,7 +36,7 @@ function Register({setAuth}) {
       toast.success('Welcome !')
       navigate('/profile')
     }else{
-      toast.error(json.message.slice(26,json.message.length))
+      toast.error(json.message)
     }
     console.log(json)
   }

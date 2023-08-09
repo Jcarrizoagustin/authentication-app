@@ -3,7 +3,7 @@ import Logo from "./Logo";
 import Social from "./Social";
 import Button from "./Button";
 import CardInputs from "./CardInputs";
-import { useState } from "react";
+import {  useState } from "react";
 import {Login as UserLogin} from '../services/AuthService'
 import toast from 'react-hot-toast';
 const initialValues = {
@@ -14,17 +14,16 @@ function Login({setAuth}) {
   //const {setAuth} = useContext(AuthContext)
 
   const [data, setData] = useState(initialValues)
-
+  
 
   const changeData = (key,value) => {
     setData({...data,[key]:value})
-    //console.log(data)
   }
 
   const sendData = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_BASE_AUTH_LOGIN}`,
-        {method: 'POST',
+      const res = await fetch(`${import.meta.env.VITE_BASE_AUTH_LOGIN}`,{
+        method: 'POST',
         body: JSON.stringify(data),
         headers:{
           'Content-Type':'application/json'
@@ -38,7 +37,7 @@ function Login({setAuth}) {
           })
           setAuth(true)
         }else{
-          toast.error('Error')
+          toast.error(json.message)
         }
     } catch (error) {
         console.error(error)
